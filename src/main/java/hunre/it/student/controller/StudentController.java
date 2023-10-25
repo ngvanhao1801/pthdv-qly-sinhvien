@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/students")
+@CrossOrigin
 public class StudentController {
 
   private final StudentService studentService;
@@ -20,33 +20,33 @@ public class StudentController {
   }
 
 
-  @GetMapping("/listAll")
+  @GetMapping("/students")
   public List<?> list() {
 
     return studentService.listAll();
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/students/{id}")
   public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
     Optional<?> student = studentService.findById(id);
 
     return ResponseEntity.ok(student);
   }
 
-  @PostMapping("/create")
+  @PostMapping("/students")
   public ResponseEntity<?> createNewProduct(@RequestBody Student student) {
 
     return new ResponseEntity<>(studentService.save(student), HttpStatus.OK);
   }
 
-  @PutMapping("/update/{id}")
+  @PutMapping("/students/{id}")
   public ResponseEntity<?> updateStudent(@PathVariable Integer id, @RequestBody Student student) {
     Student updatedStudent = studentService.updateStudent(id, student);
 
     return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
   }
 
-  @DeleteMapping("/delete/{id}")
+  @DeleteMapping("/students/{id}")
   public ResponseEntity<?> delete(@PathVariable Integer id) {
     studentService.delete(id);
 

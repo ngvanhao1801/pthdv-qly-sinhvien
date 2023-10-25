@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product Rest API</title>
+    <title>Student Rest API</title>
 </head>
 <body>
-<h1>Product Details</h1>
-<form id="product-form">
-    <label for="product-id">Enter Product ID:</label>
-    <input type="number" id="product-id" required>
-    <button type="submit">Get Product</button>
+<h1>Student Details</h1>
+<form id="student-form">
+    <label for="student-id">Enter Student ID:</label>
+    <input type="number" id="student-id" required>
+    <button type="submit">Get Student</button>
 </form>
-<div id="product-details">
+<div id="student-details">
     <!-- Thông tin sản phẩm -->
 </div>
 
 <script>
-    const productForm = document.getElementById('product-form');
-    const productDetails = document.getElementById('product-details');
+    const studentForm = document.getElementById('student-form');
+    const studentDetails = document.getElementById('student-details');
 
-    productForm.addEventListener('submit', function (e) {
+    studentForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const productId = document.getElementById('product-id').value;
+        const studentId = document.getElementById('student-id').value;
 
-        fetch(`http://localhost:8080/products/${productId}`, {
+        fetch(`http://localhost:8080/students/${studentId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,21 +31,23 @@
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Product not found');
+                    throw new Error('Student not found');
                 }
                 return response.json();
             })
-            .then(product => {
+            .then(student => {
 
-                productDetails.innerHTML = `
-              <h2>Product Details</h2>
-              <p><strong>ID:</strong> ${product.id}</p>
-              <p><strong>Name:</strong> ${product.name}</p>
-              <p><strong>Price:</strong> ${product.price}</p>
+                studentDetails.innerHTML = `
+              <h2>Student Details</h2>
+              <strong>ID:</strong> ${student.id}<br>
+              <strong>Mã Sinh Viên:</strong> ${student.maSv}<br>
+              <strong>Họ Và Tên:</strong> ${student.hoTen}<br>
+              <strong>Lớp:</strong> ${student.lop}<br>
+              <strong>Khoa:</strong> ${student.khoa}<br>
               `;
             })
             .catch(error => {
-                productDetails.innerHTML = `<p>${error.message}</p>`;
+                studentDetails.innerHTML = `<p>${error.message}</p>`;
             });
 
     });

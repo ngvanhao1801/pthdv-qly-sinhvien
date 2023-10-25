@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Student Rest API</title>
+    <title>Update</title>
 </head>
 <body>
-<h1>Add New Student</h1>
+<h1>Update Student</h1>
 <form id="student-form">
+    <label for="student-id">Student ID: </label>
+    <input type="number" id="student-id" required><br>
     <label for="student-maSv">Mã Sinh Viên:</label>
     <input type="text" id="student-maSv" placeholder="Nhập mã sinh viên" required>
 
@@ -18,48 +20,46 @@
 
     <label for="student-hoTen">Khoa</label>
     <input type="text" id="student-khoa" placeholder="Nhập tên khoa" required>
-
-    <button type="submit">Add Student</button>
+    <button type="submit">Update Student</button>
 </form>
-
 <script>
     const studentForm = document.getElementById('student-form');
-
     studentForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        const studentId = document.getElementById(`student-id`).value;
         const studentMaSv = document.getElementById('student-maSv').value;
         const studentHoTen = document.getElementById('student-hoTen').value;
         const studentLop = document.getElementById('student-lop').value;
         const studentKhoa = document.getElementById('student-khoa').value;
 
-        const newStudent = {
+        const updateStudent = {
+            id: parseInt(studentId),
             maSv: studentMaSv,
             hoTen: studentHoTen,
             lop: studentLop,
             khoa: studentKhoa
         };
-
-        fetch('http://localhost:8080/students', {
-            method: 'POST',
+        fetch(`http://localhost:8080/students/${studentId}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newStudent)
+            body: JSON.stringify(updateStudent)
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Failed to add student');
+                    throw new Error('Failed to update student');
                 }
                 return response.json();
             })
             .then(data => {
-                alert('Student added successfully');
+                alert('Student updated successfully');
                 window.location.href = "index.html";
             })
             .catch(error => {
-                console.error('Error', error);
-                alert('Failed to add student');
+                console.error('Error: ', error);
+                alert('Failed to update student');
             });
     });
 </script>

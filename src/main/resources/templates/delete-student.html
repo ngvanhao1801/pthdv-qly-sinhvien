@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Rest API</title>
+</head>
+<body>
+<h1>Delete Student</h1>
+<form id="student-form">
+    <label for="student-id">Mã Sinh Viên:</label>
+    <input type="text" id="student-id" required>
+
+    <button type="submit">Delete Student</button>
+</form>
+
+<script>
+    const studentForm = document.getElementById('student-form');
+
+    studentForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const studentId = document.getElementById('student-id').value;
+
+        fetch(`http://localhost:8080/students/${studentId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete student');
+                }
+            })
+            .then(data => {
+                alert('Student deleted successfully');
+                window.location.href = "index.html";
+            })
+            .catch(error => {
+                console.error('Error', error);
+                alert('Failed to delete student');
+            });
+    });
+</script>
+</body>
+</html>

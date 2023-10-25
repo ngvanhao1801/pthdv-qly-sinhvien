@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product Rest API</title>
+    <title>Student Rest API</title>
 </head>
 <body>
 <div class="container">
-    <h1>Product List</h1>
-    <ul id="product-list">
+    <h1>Student List</h1>
+    <ul id="student-list">
         <!--Danh sách sản phẩm được thêm vào bằng JavaScript -->
     </ul>
 </div>
 
 <script>
     //Sử dng JavaScript để gọi API và hiển thị dữ liệu
-    fetch('http://localhost:8080/products', {
+    fetch('http://localhost:8080/students', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -23,15 +23,17 @@
     })
         .then(response => response.json())
         .then(data => {
-            const productList = document.getElementById('product-list');
-            data.forEach(product => {
+            const studentList = document.getElementById('student-list');
+            data.forEach(student => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
-              <strong>ID:</strong> ${product.id}<br>
-              <strong>Name:</strong> ${product.name}<br>
-              <strong>Price:</strong> ${product.price}<br>
+              <strong>ID:</strong> ${student.id}<br>
+              <strong>Mã Sinh Viên:</strong> ${student.maSv}<br>
+              <strong>Họ Và Tên:</strong> ${student.hoTen}<br>
+              <strong>Lớp:</strong> ${student.lop}<br>
+              <strong>Khoa:</strong> ${student.khoa}<br>
         `;
-                productList.appendChild(listItem);
+                studentList.appendChild(listItem);
             });
         })
         .catch(error => console.error('Error:', error))
