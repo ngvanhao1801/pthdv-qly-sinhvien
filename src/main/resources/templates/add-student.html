@@ -3,25 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Rest API</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 </head>
 <body>
-<h1>Add New Student</h1>
-<form id="student-form">
-    <label for="student-maSv">Mã Sinh Viên:</label>
-    <input type="text" id="student-maSv" placeholder="Nhập mã sinh viên" required>
+<div class="container">
+    <h2 class="text-center">Add Student</h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <div class="card-body">
+                <form id="student-form">
+                    <div class="form-group">
+                        <label for="student-maSv"> Mã Sinh Viên: </label>
+                        <input type="text" id="student-maSv" placeholder="Nhập mã sinh viên"
+                               class="form-control" required>
+                    </div>
 
-    <label for="student-hoTen">Họ Và Tên Sinh Viên</label>
-    <input type="text" id="student-hoTen" placeholder="Nhập họ và tên sinh viên" required>
+                    <div class="form-group">
+                        <label for="student-hoTen">Họ Và Tên Sinh Viên: </label>
+                        <input type="text" id="student-hoTen" placeholder="Nhập họ và tên sinh viên"
+                               class="form-control" required>
+                    </div>
 
-    <label for="student-lop">Lớp</label>
-    <input type="text" id="student-lop" placeholder="Nhập tên lớp" required>
+                    <div class="form-group">
+                        <label for="student-lop">Lớp: </label>
+                        <input type="text" id="student-lop" placeholder="Nhập tên lớp"
+                               class="form-control" required>
+                    </div>
 
-    <label for="student-hoTen">Khoa</label>
-    <input type="text" id="student-khoa" placeholder="Nhập tên khoa" required>
+                    <div class="form-group">
+                        <label for="student-khoa">Khoa: </label>
+                        <input type="text" id="student-khoa" placeholder="Nhập tên khoa"
+                               class="form-control" required>
+                    </div>
 
-    <button type="submit">Add Student</button>
-</form>
-
+                    <div class="box-footer" style="text-align: center">
+                        <button type="submit" class="btn btn-primary">
+                            Add Student
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     const studentForm = document.getElementById('student-form');
 
