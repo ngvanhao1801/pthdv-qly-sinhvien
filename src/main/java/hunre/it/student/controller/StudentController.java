@@ -19,7 +19,6 @@ public class StudentController {
     this.studentService = studentService;
   }
 
-
   @GetMapping("/students")
   public List<?> list() {
 
@@ -33,22 +32,22 @@ public class StudentController {
     return ResponseEntity.ok(student);
   }
 
-  @PostMapping("/students")
-  public ResponseEntity<?> createNewProduct(@RequestBody Student student) {
+  @PostMapping("/students/save")
+  public ResponseEntity<?> createNewStudent(@RequestBody Student student) {
 
     return new ResponseEntity<>(studentService.save(student), HttpStatus.OK);
   }
 
-  @PutMapping("/students/{id}")
+  @PutMapping("/students/update/{id}")
   public ResponseEntity<?> updateStudent(@PathVariable Integer id, @RequestBody Student student) {
     Student updatedStudent = studentService.updateStudent(id, student);
 
     return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
   }
 
-  @DeleteMapping("/students/{id}")
-  public ResponseEntity<?> delete(@PathVariable Integer id) {
-    studentService.delete(id);
+  @DeleteMapping("/students/delete/{id}")
+  public ResponseEntity<?> deleteStudent(@PathVariable Integer id) {
+    studentService.deleteStudent(id);
 
     return new ResponseEntity<>("Đã xóa thành công", HttpStatus.OK);
   }
