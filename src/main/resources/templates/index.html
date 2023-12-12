@@ -77,10 +77,8 @@
                     return response.json();
                 })
                 .then(student => {
-                    // Xóa nội dung cũ trước khi thêm mới
                     studentList.innerHTML = '';
 
-                    // Thêm sinh viên vào danh sách
                     const listItem = document.createElement('tr');
                     listItem.innerHTML = `
                     <td>${student.id}</td>
@@ -92,7 +90,6 @@
                     studentList.appendChild(listItem);
                 })
                 .catch(error => {
-                    // Xóa nội dung cũ trước khi thêm mới
                     studentList.innerHTML = `<tr><td colspan="5">${error.message}</td></tr>`;
                 });
         }

@@ -42,11 +42,8 @@ public class StudentService {
 
   public Student updateStudent(Integer id, Student student) {
     Optional<Student> existingStudent = studentRepository.findById(id);
-    if (!existingStudent.isEmpty()) {
+    if (!existingStudent.isPresent()) {
       throw new NotFoundException("Không tìm thấy sinh viên với id: " + id);
-    }
-    if (studentRepository.existsByHoTenAndIdNot(student.getHoTen(), id)) {
-      throw new DuplicateException("Tên sinh viên đã tồn tại");
     }
     return studentRepository.save(student);
   }
